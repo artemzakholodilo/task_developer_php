@@ -11,6 +11,16 @@ $this->title = 'Product Records';
 
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="container">
+        <div class="col-sm-12 col-md-12">
+            <?php
+//            $models = \app\models\category\CategoryRecord::find()->all();
+//            
+//            $categories = array_map(function($model){ return $model->name; },
+//                    $models);
+//            
+//            echo Html::checkboxList('category', null, $categories);
+            ?>
+        </div>
         <div class="col-md-3">
             <?= 
             ListView::widget([

@@ -30,7 +30,6 @@ class ProductSearchModel extends ProductRecord
         $query->andFilterWhere([
             'id' => $this->id,
             'price' => $this->price,
-            'category' => $this->categories
         ]);
         
         $query->andFilterWhere(['like', 'name', $this->name]);
