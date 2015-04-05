@@ -24,7 +24,7 @@ return array (
   'yiisoft/yii2-bootstrap' => 
   array (
     'name' => 'yiisoft/yii2-bootstrap',
-    'version' => '2.0.1.0',
+    'version' => '2.0.3.0',
     'alias' => 
     array (
       '@yii/bootstrap' => $vendorDir . '/yiisoft/yii2-bootstrap',
@@ -56,5 +56,15 @@ return array (
     array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
+  ),
+  'nodge/yii2-eauth' => 
+  array (
+    'name' => 'nodge/yii2-eauth',
+    'version' => '2.2.3.0',
+    'alias' => 
+    array (
+      '@nodge/eauth' => $vendorDir . '/nodge/yii2-eauth/src',
+    ),
+    'bootstrap' => 'nodge\\eauth\\Bootstrap',
   ),
 );

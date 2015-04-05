@@ -1,0 +1,12 @@
+span.product-categories {
+    padding-left: 1% 5%;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+span.product-categories-none {
+    display: block;
+    color: rgb(65, 80, 65);
+    border: 1px solid red;
+    border-radius: 10px;
+}

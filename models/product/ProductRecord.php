@@ -9,17 +9,6 @@ class ProductRecord extends ActiveRecord
     public static function tableName() {
         return "products";
     }
-    
-    public function behaviors() {
-        return [
-            'timestamp' => [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
-            ],
-            'blame' => [
-                'class' => \yii\behaviors\BlameableBehavior::className()
-            ],
-        ];
-    }
 
     public function rules() {
         return [
@@ -44,5 +33,4 @@ class ProductRecord extends ActiveRecord
                 );
     }
     
-
 }

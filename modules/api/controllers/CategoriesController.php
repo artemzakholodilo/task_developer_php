@@ -2,8 +2,11 @@
 namespace app\modules\api\controllers;
 
 use yii\rest\Controller;
+//use yii\web\Controller;
 
-class CategoriesControllers extends Controller
+class CategoriesController extends Controller
 {
-    
+    public function actionIndex() {
+        return "AAA";
+    }
 }

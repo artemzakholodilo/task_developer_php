@@ -6,6 +6,8 @@ use app\models\product\ProductRecord;
 
 class DistributorRecord extends ActiveRecord
 {
+    private static $distributors = null;
+    
     public static function tableName() {
         return "distributors";
     }
@@ -36,6 +38,14 @@ class DistributorRecord extends ActiveRecord
                         'id' => 'product_id'
                     ]
         );
+    }
+    
+    public static function getDistributors() {
+        if (is_null(self::$distributors)) {
+            self::$distributors = self::find()->all();
+        }
+        
+        return self::$distributors;
     }
 
 }

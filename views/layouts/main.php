@@ -4,6 +4,7 @@ use yii\helpers\Html;
 //\app\assets\ApplicationUiAssetBundle::register($this);
 \yii\web\AssetBundle::register($this);
 \yii\bootstrap\BootstrapAsset::register($this);
+\app\assets\AppUiAssetBundle::register($this);
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>

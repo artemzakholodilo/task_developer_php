@@ -17,19 +17,10 @@ use app\models\product\ProductRecord;
 
 class CategoryRecord extends ActiveRecord
 {
+    private static $categories = null;
+    
     public static function tableName() {
         return "categories";
-    }
-    
-    public function behaviors() {
-        return [
-            'timestamp' => [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
-            ],
-            'blame' => [
-                'class' => \yii\behaviors\BlameableBehavior::className()
-            ],
-        ];
     }
 
     public function rules() {
@@ -55,5 +46,12 @@ class CategoryRecord extends ActiveRecord
                 );
     }
     
+    public static function getCategories() {
+        if (is_null(self::$categories)) {
+            self::$categories = self::find()->all();
+        }
+        
+        return self::$categories;
+    }
 
 }

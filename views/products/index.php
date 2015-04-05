@@ -22,14 +22,24 @@ $this->title = 'Product Records';
             ?>
         </div>
         <div class="col-md-3">
+            
+            <?= Html::label('Categories'); ?>
             <?= 
             ListView::widget([
                 'dataProvider' => $categoriesProvider,
                 'itemView' => '_category'
             ]);
             ?>
+            
+            <?= Html::a('Drop filters', ['/products/index'], [
+                'class' => 'btn btn-danger'
+            ]);
+            ?>
         </div>
         <div class="col-md-9">
+        <?= Html::a("Add product", ['create'], [
+            'class' => 'btn btn-primary'
+        ]) ?>
             <?=
             GridView::widget([
                 'dataProvider' => $dataProvider,
@@ -38,7 +48,7 @@ $this->title = 'Product Records';
                     [
                         'attribute' => 'name',
                         'label' => 'Product',
-                        'format' => 'paragraphs',
+                        'format' => 'html',
                         'value' => function($model) {
                             $value = '';
                             $value .= Html::img($model->image_url, [
@@ -46,8 +56,8 @@ $this->title = 'Product Records';
                             ]);
                             $value .= Html::a($model->name, 
                                          ['products/view?id=' . $model->id]);
-                            
-                            $value .= "\n Categories: ";
+                            $value .= "<br/>";
+                            $value .= "Categories: ";
                             
                             if ($model->categories) {
                                 foreach ($model->categories as $category) {

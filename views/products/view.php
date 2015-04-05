@@ -33,7 +33,7 @@ else {
             'price',
             [
                 'label' => 'Categories',
-//                'format' => 'html',
+                'format' => 'html',
                 'value' => $categories
             ],
             [

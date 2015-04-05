@@ -16,7 +16,6 @@ $this->title = 'Categories Records';
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 'name',
-                ['class' => 'yii\grid\ActionColumn'],
             ]
         ]);
         ?>

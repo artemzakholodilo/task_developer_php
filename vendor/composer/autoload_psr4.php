@@ -6,5 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
+    'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
+    'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'nodge\\eauth\\' => array($vendorDir . '/nodge/yii2-eauth/src'),
+    'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'app\\' => array($baseDir . '/'),
+    'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

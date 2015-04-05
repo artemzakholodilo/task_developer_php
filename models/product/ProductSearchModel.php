@@ -27,12 +27,18 @@ class ProductSearchModel extends ProductRecord
             return $dataProvider;
         }
         
+//        var_dump($params); exit;
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'price' => $this->price,
         ]);
         
         $query->andFilterWhere(['like', 'name', $this->name]);
+        
+        $query->andFilterWhere([
+            'categories.id' => isset($params[0]['category']) ? $params[0]['category'] : null 
+        ]);
         
         return $dataProvider;
     }
