@@ -12,7 +12,7 @@ class AppUiAssetBundle extends AssetBundle
     ];
     
     public $css = [
-        'css/main.css',
+        'css/app.css',
     ];
     
     public $depends = [];

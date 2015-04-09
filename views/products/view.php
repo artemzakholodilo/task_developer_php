@@ -7,12 +7,12 @@ $this->title = $product->name;
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$categories = '';
+$categories = '<div class="list-group">';
 
 if ($product->categories) {
     foreach ($product->categories as $category) {
         $categories .= Html::tag('span', $category->name, [
-            'class' => 'product-category'
+            'class' => 'product-category list-group-item'
         ]);
     }
 }
@@ -21,6 +21,8 @@ else {
         'class' => 'product-category-none'
     ]);
 }
+
+$categories .= "</div>";
 ?>
 <div class="product-record-view">
 

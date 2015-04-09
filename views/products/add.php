@@ -8,7 +8,10 @@ use yii\bootstrap\ActiveForm;
 
 <?php
 $form = ActiveForm::begin([
-        ]);
+    'options' => [
+        'enctype' => 'multipart/form-data'
+    ]
+]);
 ?>
 
 <div class="container">
@@ -57,3 +60,7 @@ $form = ActiveForm::begin([
     </div>
 
 </div>
+
+<?php
+ ActiveForm::end();
+?>

@@ -12,17 +12,6 @@ class DistributorRecord extends ActiveRecord
         return "distributors";
     }
     
-    public function behaviors() {
-        return [
-            'timestamp' => [
-                'class' => \yii\behaviors\TimestampBehavior::className(),
-            ],
-            'blame' => [
-                'class' => \yii\behaviors\BlameableBehavior::className()
-            ],
-        ];
-    }
-
     public function rules() {
         return [
             ['id', 'number'],

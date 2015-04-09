@@ -1,21 +1,14 @@
 <?php
 namespace app\modules\api\controllers;
 
-use yii\rest\Controller;
-//use yii\web\Controller;
-use app\models\distributor\DistributorSearchModel;
+use yii\rest\ActiveController;
+use app\models\distributor\DistributorRecord;
 
-class DistributorsController extends Controller
+class DistributorsController extends ActiveController
 {
-    public $model;
+    public $modelClass;
     
     public function init() {
-        parent::init();
-        
-        $this->model = DistributorSearchModel::className();
-    }
-    
-    public function actionIndex() {
-        return "aaaa";
+        $this->modelClass = DistributorRecord::className();
     }
 }

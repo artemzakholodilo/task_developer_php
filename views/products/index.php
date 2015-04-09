@@ -50,9 +50,9 @@ $this->title = 'Product Records';
                         'label' => 'Product',
                         'format' => 'html',
                         'value' => function($model) {
-                            $value = '';
+                            $value = "<div class='list-group'>";
                             $value .= Html::img($model->image_url, [
-                                'class' => 'img img-responsive'
+                                'class' => 'img img-responsive product-image'
                             ]);
                             $value .= Html::a($model->name, 
                                          ['products/view?id=' . $model->id]);
@@ -62,7 +62,7 @@ $this->title = 'Product Records';
                             if ($model->categories) {
                                 foreach ($model->categories as $category) {
                                     $value .= Html::tag('span', $category->name, [
-                                        'class' => 'product-categories'
+                                        'class' => 'product-category list-group-item'
                                     ]);
                                 }
                             } else {
@@ -70,6 +70,8 @@ $this->title = 'Product Records';
                                     'class' => 'product-categories-none'
                                 ]);
                             }
+                            
+                            $value .= "</div>";
                             
                             return $value;
                         }

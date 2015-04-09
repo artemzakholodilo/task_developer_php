@@ -13,9 +13,9 @@ class ProductRecord extends ActiveRecord
     public function rules() {
         return [
             ['id', 'number'],
-            ['name', 'required'],
+            [['name', 'price'], 'required'],
             ['name', 'string', 'max' => 256],
-            [['price', 'image_url'], 'safe']
+            [['name', 'price', 'image_url'], 'safe']
         ];
     }
     

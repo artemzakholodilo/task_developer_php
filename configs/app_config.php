@@ -3,6 +3,7 @@
 return [
     "id" => "task_developer_php",
     "basePath" => realpath(__DIR__ . "/../"),
+    "defaultRoute" => "products/index",
     "components" => [
         "log" => [
             "traceLevel" => YII_DEBUG ? 3 : 0,
@@ -11,13 +12,38 @@ return [
                 'levels' => ['error', 'warning'],
             ]
         ],
+        "user" => [
+            'identityClass' => 'app\\models\\user\\UserRecord',
+            'enableAutoLogin' => false,
+        ],
         "urlManager" => [
             "enablePrettyUrl" => true,
             "showScriptName" => false,
 //            "enableStrictParsing" => true,
+            "rules" => [
+//                [
+//                    'pattern' => [
+//                        "GET api/<controller>" => "api/<controller>/index",
+//                        "GET api/<controller>/<id>" => "api/<controller>/view",
+//                        "POST api/<controller>" => "api/<controller>/create",
+//                        "PUT api/<controller>/<id>" => "api/<controller>/update",
+//                        "DELETE api/<controller>/<id>" => "api/<controller>/delete",
+//                    ]
+//                ]
+                [
+                    'class' => \yii\rest\UrlRule::className(),
+                    "controller" => [
+                        "api/distributors",
+                        "api/products",
+                        "api/categories"
+                    ],
+                ],
+//                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+//                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ]
         ],
         "request" => [
-            "cookieValidationKey" => 'saltkey123',
+            "cookieValidationKey" => 'key123',
             "parsers" => [
                 'application/json' => 'yii\\web\\JsonParser'
             ]
@@ -26,21 +52,30 @@ return [
     ],
     "modules" => [
         'api' => [
-            'class' => 'app\\modules\\api\\ApiModule',
-            'controllerNamespace' => 'app\\modules\\api\\controllers',
-            'components' => [
-                "urlManager" => [
-                    "class" => \yii\web\UrlManager::className(),
-                    "enablePrettyUrl" => true,
-                    "showScriptName" => false,
-                    "enableStrictParsing" => true,
-                    "rules" => [
-                        [
-                            'class' => 'yii\\rest\\UrlRule'
-                        ]
-                    ],
-                ],
-            ]
+            'class' => \app\modules\api\ApiModule::className(),
+            'basePath' => '@app/modules/api',
+//            'components' => [
+//                "urlManager" => [
+//                    "class" => \yii\web\UrlManager::className(),
+////                    "enableStrictParsing" => true,
+//                    "rules" => [
+//                        [
+//                            "class" => \yii\rest\UrlRule::className(),
+//                            "controller" => [
+//                                "api/distributors",
+//                                "api/products",
+//                                "api/categories"
+//                            ],
+//                        ],
+//                    ],
+//                ],
+//                "request" => [
+//                    "class" => \yii\web\Request::className(),
+//                    "parsers" => [
+//                        'application/json' => 'yii\\web\\JsonParser'
+//                    ]
+//                ],
+//            ]
         ],
     ],
     'extensions' => require(__DIR__ . '/../vendor/yiisoft/extensions.php'),

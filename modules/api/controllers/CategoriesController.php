@@ -1,12 +1,14 @@
 <?php
 namespace app\modules\api\controllers;
 
-use yii\rest\Controller;
-//use yii\web\Controller;
+use yii\rest\ActiveController;
+use app\models\category\CategoryRecord;
 
-class CategoriesController extends Controller
+class CategoriesController extends ActiveController
 {
-    public function actionIndex() {
-        return "AAA";
+    public $modelClass;
+    
+    public function init() {
+        $this->modelClass = CategoryRecord::className();
     }
 }

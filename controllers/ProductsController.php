@@ -34,7 +34,6 @@ class ProductsController extends Controller
                 $this->load($product, Yii::$app->request->getBodyParams())
             ) 
         {
-            var_dump($_FILES); exit;
             $this->createProduct($product, Yii::$app->request->bodyParams);
             $this->redirect(['index']);
         }
@@ -62,8 +61,36 @@ class ProductsController extends Controller
         return $this->render('view', compact('product', 'distributor'));
     }
     
+    public function actionUpdate($id) {
+        $product = ProductRecord::findOne($id);
+
+        if (!$product) {
+            throw new \yii\web\HttpException("Page not found");
+        }
+    }
+
+
+    private function uploadProductImage(Product $product) {
+        $image = \yii\web\UploadedFile::getInstance($product, 'image_url');
+        
+        $path = Yii::getAlias("@webroot") . DIRECTORY_SEPARATOR . $product->getPath();
+        
+        $imageUrl = $path . $product->name. "_" . $image;
+        
+        $absoluteUrl = \yii\helpers\BaseUrl::home(true) . $product->getPath();
+        
+        $absoluteUrl .= $product->name. "_" . $image;
+        
+        if ($image->saveAs($imageUrl)) {
+            return $absoluteUrl;
+        }
+        
+        return null;
+    }
+    
     private function load(Product $product, $post) {
-        return $product->load($post) && $product->validate();
+        return $product->load($post)
+                && $product->validate();
     }
     
     private function createProduct(Product $product, array $post) {
@@ -71,9 +98,14 @@ class ProductsController extends Controller
         $productRecord->name = $product->name;
         $productRecord->price = $product->price;
         $productRecord->distributor_id = $post['distributor'];
+        $productRecord->image_url = $this->uploadProductImage($product);
         
         try {
             $productRecord->save();
+            
+            if (empty($post['category'])) {
+                return true;
+            }
 
             foreach ($post['category'] as $category) {
                 $categoryRecord = \app\models\category\CategoryRecord::findOne([
